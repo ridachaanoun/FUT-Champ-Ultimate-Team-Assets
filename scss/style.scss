@@ -1,3 +1,69 @@
-main{
-  background-image: url(/src/assets/img/field-bg.png);
+main {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  .field{
+    background-image: url(/src/assets/img/field-bg.png);
+    background-color: aquamarine;
+    width: 900px;
+    height: 730px;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    .cards-container {
+      border: none;
+      padding: 0;
+      margin: 0;
+      width: 100px;
+      height: 170px;
+      background: url(/src/assets/img/badge_gold.webp) no-repeat;
+      background-position: center;
+      background-size: contain;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      color: #07D95A;
+    }
+
+  .cards-container:hover {
+      filter: drop-shadow(0px 0px 13px rgb(75, 172, 75));
+  }
+  }
+  aside{
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    height: 730px;
+    background-color: rebeccapurple;
+    .saveSquad{
+      width: 90%;
+      height: 50px;
+    }
+    .Formation{
+      width: 100%;
+      .custom-select {
+        width: 90%;
+        select {
+          appearance: none;
+          width: 100%;
+          font-size: 1.15rem;
+          background-color: #fff;
+          border: 1px solid #caced1;
+          border-radius: 0.25rem;
+          color: #000;
+          cursor: pointer;
+        }
+      }
+      
+    }
+  }
+
+}
+@media screen and (max-width: 700px) {
+  .cards-container {
+    height: 100px !important;
+  }
 }
