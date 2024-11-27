@@ -219,12 +219,37 @@ function renderTeam(formation) {
 
 // Save squad to localStorage
 function saveSquad() {
-  const squadData = {
-    formation: formationDropdown.value,
-    players: currentPlayers,
-  };
-  localStorage.setItem("savedSquad", JSON.stringify(squadData));
-  alert("Squad saved successfully!");
+  const confirmationPopup = document.getElementById("save-confirmation-popup");
+  const successPopup = document.getElementById("success-popup");
+  const confirmSave = document.getElementById("confirm-save");
+  const cancelSave = document.getElementById("cancel-save");
+  const okSuccess = document.getElementById("ok-success");
+
+  // Show the confirmation popup
+  confirmationPopup.style.display = "flex";
+
+  // Confirm save
+  confirmSave.addEventListener("click", () => {
+    const squadData = {
+      formation: formationDropdown.value,
+      players: currentPlayers,
+    };
+    localStorage.setItem("savedSquad", JSON.stringify(squadData));
+
+    // Close the confirmation popup and show the success popup
+    confirmationPopup.style.display = "none";
+    successPopup.style.display = "flex";
+  });
+
+  // Cancel save
+  cancelSave.addEventListener("click", () => {
+    confirmationPopup.style.display = "none";
+  });
+
+  // Hide success popup when OK is clicked
+  okSuccess.addEventListener("click", () => {
+    successPopup.style.display = "none";
+  });
 }
 
 // Load squad from localStorage

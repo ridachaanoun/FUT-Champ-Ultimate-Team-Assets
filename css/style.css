@@ -257,6 +257,88 @@ main aside .Formation .custom-select select {
   transform: scale(1.8);
 }
 
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display: none;
+}
+.popup-container .popup-content {
+  background: #1e1e2f;
+  border-radius: 12px;
+  padding: 30px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.popup-container .popup-content h3 {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+.popup-container .popup-content p {
+  color: #bbbbbb;
+  font-size: 1rem;
+  margin-bottom: 25px;
+}
+.popup-container .popup-content .btn-confirm {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+.popup-container .popup-content .btn-confirm:hover {
+  background-color: #218838;
+}
+.popup-container .popup-content .btn-cancel {
+  background-color: #dc3545;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.popup-container .popup-content .btn-cancel:hover {
+  background-color: #c82333;
+}
+
+.success-popup .popup-content {
+  background: #212121;
+  color: white;
+}
+.success-popup .popup-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.success-popup .popup-content .btn-ok {
+  background-color: #17a2b8;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.success-popup .popup-content .btn-ok:hover {
+  background-color: #138496;
+}
+
 @media screen and (max-width: 700px) {
   .cards-container {
     height: 100px !important;

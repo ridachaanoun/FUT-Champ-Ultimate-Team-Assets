@@ -277,6 +277,86 @@ main {
   }
 }
 
+
+// Mixin for button styles
+@mixin button-style($bg-color, $hover-color) {
+  background-color: $bg-color;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display: none; 
+
+  .popup-content {
+    background: #1e1e2f;
+    border-radius: 12px;
+    padding: 30px;
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    h3 {
+      color: #ffffff;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #bbbbbb;
+      font-size: 1rem;
+      margin-bottom: 25px;
+    }
+
+    .btn-confirm {
+      @include button-style(#28a745, #218838);
+      margin-right: 10px;
+    }
+
+    .btn-cancel {
+      @include button-style(#dc3545, #c82333);
+    }
+  }
+}
+
+// Success popup styling
+.success-popup {
+  .popup-content {
+    background: #212121;
+    color: white;
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .btn-ok {
+      @include button-style(#17a2b8, #138496);
+    }
+  }
+}
+
 @media screen and (max-width: 700px) {
   .cards-container {
     height: 100px !important;
