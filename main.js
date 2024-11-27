@@ -3,12 +3,7 @@ const formationDropdown = document.querySelector('.Formation select');
 const field = document.querySelector('.field');
 const closePopup = document.getElementById("close");
 const bigcontainer = document.querySelector(".theall");
-
-// Create a section for displaying selected player details
-const playerDetailSection = document.createElement("div");
-playerDetailSection.id = "player-detail";
-playerDetailSection.className = "player-detail";
-document.body.appendChild(playerDetailSection); // Add it to the body
+const saveSquadBtn = document.getElementById("saveSquad");
 
 // Define formations and their positions
 const formations = {
@@ -81,7 +76,7 @@ function renderTeam(formation) {
     playerCard.style.top = pos.top;
     playerCard.style.left = pos.left;
     playerCard.style.transform = "translate(-50%, -50%)";
-    playerCard.textContent = pos.id.toUpperCase(); // Placeholder text for position
+    playerCard.textContent = pos.id.toUpperCase(); 
 
 
         // If a player is already selected for this position, render the player details
@@ -120,12 +115,11 @@ function renderTeam(formation) {
 
 
     playerCard.addEventListener("click", (e) => {
-      let carrentid = e.target.id; 
-      // console.log(carrentid);
+      let carrentid = e.currentTarget.id; 
+
       const carrentcard = document.getElementById(carrentid)
       
-      
-      
+    
       const container = document.getElementById("card-container");
       container.innerHTML = "";
       async function getPlayers() {
@@ -178,7 +172,8 @@ function renderTeam(formation) {
           card.addEventListener("click", () => {
             // Save the selected player to the currentPlayers object
             currentPlayers[carrentid] = player;
-            
+            console.log("Current ID:", carrentid);
+            console.log("Element with ID:", document.getElementById(carrentid));
             carrentcard.innerHTML = `
               <div class="player-detail-card">
                 <div class="rating2">${player.rating}</div>
@@ -206,10 +201,9 @@ function renderTeam(formation) {
                 <img class="logo2" src="${player.logo}" alt="${player.club}">
               </div>
             `;
-            playerDetailSection.style.display = "block"; // Ensure it's visible
           });
 
-          // Append the card to the container
+          // Add the card to the container
           container.appendChild(card);
         });
       }
@@ -223,16 +217,40 @@ function renderTeam(formation) {
   });
 }
 
+// Save squad to localStorage
+function saveSquad() {
+  const squadData = {
+    formation: formationDropdown.value,
+    players: currentPlayers,
+  };
+  localStorage.setItem("savedSquad", JSON.stringify(squadData));
+  alert("Squad saved successfully!");
+}
+
+// Load squad from localStorage
+function loadSquad() {
+  const savedSquad = JSON.parse(localStorage.getItem("savedSquad"));
+  if (savedSquad) {
+    formationDropdown.value = savedSquad.formation;
+    currentPlayers = savedSquad.players;
+    renderTeam(savedSquad.formation);
+  } else
+    renderTeam(formationDropdown.value);
+}
+
 // Handle formation change
 formationDropdown.addEventListener('change', (e) => {
   const selectedFormation = e.target.value;
   renderTeam(selectedFormation);
 });
 
+// Save squad in local storage when user clicks Save Squad btn
+saveSquadBtn.addEventListener("click", saveSquad);
+
 // Close the popup
 closePopup.addEventListener("click", () => {
   bigcontainer.style.display = "none";
 });
 
-// Initial render
-renderTeam("3-4-3");
+
+loadSquad();
