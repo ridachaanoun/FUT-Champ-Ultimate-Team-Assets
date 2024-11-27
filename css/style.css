@@ -31,7 +31,7 @@ main .field .cards-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #07D95A;
+  color: #07d95a;
 }
 main .field .cards-container:hover {
   filter: drop-shadow(0px 0px 13px rgb(75, 172, 75));
@@ -92,7 +92,6 @@ main aside .Formation .custom-select select {
   font-size: 14px;
   color: #4d331f;
 }
-
 .player-card .photo {
   margin-bottom: -4px;
   position: relative;
@@ -100,8 +99,7 @@ main aside .Formation .custom-select select {
   right: -10px;
   width: 135px;
 }
-
-.rating {
+.player-card .rating {
   position: absolute;
   top: 78px;
   left: 52px;
@@ -109,8 +107,7 @@ main aside .Formation .custom-select select {
   font-weight: bold;
   color: #4d331f;
 }
-
-.position {
+.player-card .position {
   position: absolute;
   top: 119px;
   right: 194px;
@@ -118,8 +115,7 @@ main aside .Formation .custom-select select {
   font-weight: bold;
   color: #4d331f;
 }
-
-.stats {
+.player-card .stats {
   margin-top: 10px;
   display: flex;
   justify-content: center;
@@ -130,34 +126,107 @@ main aside .Formation .custom-select select {
   font-weight: bold;
   color: #4d331f;
 }
-
-.stat {
+.player-card .stat {
   font-weight: bold;
   display: flex;
   flex-direction: column;
   color: #4d331f;
 }
-
-.logo {
+.player-card .logo {
   margin-top: 10px;
   position: absolute;
   top: 326px;
   right: 101px;
   width: 32px;
 }
-
-.name {
+.player-card .name {
   position: relative;
   top: 123px;
   left: 7px;
   color: #4d331f;
 }
-
-.flag {
+.player-card .flag {
   position: relative;
   top: 123px;
   left: -12px;
   width: 27px;
+}
+
+.player-detail-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.photo2 {
+  margin-bottom: -4px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 35%;
+  left: 50%;
+  max-width: 65px;
+}
+
+.rating2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 30%;
+  left: 27%;
+  font-size: 17px;
+  font-weight: bold;
+  color: #4d331f;
+}
+
+.position2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 35%;
+  left: 28%;
+  font-size: 11px;
+  font-weight: bold;
+  color: #4d331f;
+}
+
+.stats2 {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 59%;
+  left: 50%;
+  width: 100px;
+  font-weight: bold;
+  color: #4d331f;
+  font-size: 10px;
+  flex-wrap: wrap;
+  gap: 1.5px;
+}
+
+.logo2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 76%;
+  left: 60%;
+  width: 20px;
+}
+
+.name2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 52%;
+  left: 50%;
+  color: #4d331f;
+  width: 150px;
+  font-size: 12.2px;
+}
+
+.flag2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 76%;
+  left: 40%;
+  width: 21px;
 }
 
 .theall {
@@ -170,9 +239,6 @@ main aside .Formation .custom-select select {
   left: 0;
   width: 100vw;
   height: 100vh;
-  display: none;
-  align-items: center;
-  justify-content: center;
   z-index: 1000;
   overflow: scroll;
   overflow-x: scroll;

@@ -168,6 +168,85 @@ main {
   }
 }
 
+.player-detail-card{
+  // background-color: #07d95a;
+  position: relative;
+  width: 100%;
+    height: 100%;
+
+}
+.photo2 {
+  margin-bottom: -4px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 35%; 
+  left: 50%;
+  max-width:65px;
+}
+
+.rating2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 30%;
+  left: 27%;
+  font-size: 17px;
+  font-weight: bold;
+  color: #4d331f;
+}
+
+.position2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 35%;
+  left: 28%;
+  font-size: 11px;
+  font-weight: bold;
+  color: #4d331f;
+}
+
+.stats2 {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 59%;
+  left: 50%;
+  width: 100px;
+  font-weight: bold;
+  color: #4d331f;
+  font-size: 10px;
+  flex-wrap: wrap;
+  gap: 1.5px;
+}
+
+
+.logo2 {
+    position: absolute;
+  transform: translate(-50%, -50%);
+  top: 76%;
+  left: 60%;
+  width: 20px;
+}
+
+.name2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 52%;
+  left: 50%;
+  color: #4d331f;
+  width: 150px;
+  font-size: 12.2px;
+}
+
+.flag2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 76%;
+  left: 40%;
+  width: 21px;
+}
+
 .theall {
   display: none;
   justify-content: center;
