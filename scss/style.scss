@@ -1,8 +1,16 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  scrollbar-width: none;
+}
+
 main {
   display: flex;
   justify-content: center;
   gap: 10px;
-  .field{
+
+  .field {
     background-image: url(/src/assets/img/field-bg.png);
     background-color: aquamarine;
     width: 900px;
@@ -15,37 +23,41 @@ main {
       border: none;
       padding: 0;
       margin: 0;
-      width: 100px;
-      height: 170px;
+      width: 130px;
+      height: 230px;
       background: url(/src/assets/img/badge_gold.webp) no-repeat;
       background-position: center;
       background-size: contain;
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      color: #07D95A;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #07d95a;
     }
 
-  .cards-container:hover {
+    .cards-container:hover {
       filter: drop-shadow(0px 0px 13px rgb(75, 172, 75));
+    }
   }
-  }
-  aside{
+
+  aside {
     display: flex;
-    // justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 300px;
     height: 730px;
     background-color: rebeccapurple;
-    .saveSquad{
+
+    .saveSquad {
       width: 90%;
       height: 50px;
     }
-    .Formation{
+
+    .Formation {
       width: 100%;
+
       .custom-select {
         width: 90%;
+
         select {
           appearance: none;
           width: 100%;
@@ -57,11 +69,135 @@ main {
           cursor: pointer;
         }
       }
-      
     }
   }
-
 }
+
+#card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 90vh;
+  background-color: aliceblue;
+  overflow: scroll;
+  width: 80%;
+  border-radius: 40px;
+  background: rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(10px);
+}
+
+.player-card {
+  background-image: url(../src/assets/img/badge_gold.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 250px;
+  height: 379px;
+  border-radius: 15px;
+  text-align: center;
+  padding: 20px;
+  margin: 10px;
+  position: relative;
+  font-size: 14px;
+  color: #4d331f;
+
+  .photo {
+    margin-bottom: -4px;
+    position: relative;
+    top: 111px;
+    right: -10px;
+    width: 135px;
+  }
+
+  .rating {
+    position: absolute;
+    top: 78px;
+    left: 52px;
+    font-size: 41px;
+    font-weight: bold;
+    color: #4d331f;
+  }
+
+  .position {
+    position: absolute;
+    top: 119px;
+    right: 194px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4d331f;
+  }
+
+  .stats {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 115px;
+    left: 21px;
+    width: 213px;
+    font-weight: bold;
+    color: #4d331f;
+  }
+
+  .stat {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    color: #4d331f;
+  }
+
+  .logo {
+    margin-top: 10px;
+    position: absolute;
+    top: 326px;
+    right: 101px;
+    width: 32px;
+  }
+
+  .name {
+    position: relative;
+    top: 123px;
+    left: 7px;
+    color: #4d331f;
+  }
+
+  .flag {
+    position: relative;
+    top: 123px;
+    left: -12px;
+    width: 27px;
+  }
+}
+
+.theall {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  overflow: scroll;
+  overflow-x: scroll;
+
+  i {
+    position: absolute;
+    top: 9%;
+    right: 14%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ff0000;
+    transition: transform 0.3s;
+    z-index: 100;
+
+    &:hover {
+      transform: scale(1.8);
+    }
+  }
+}
+
 @media screen and (max-width: 700px) {
   .cards-container {
     height: 100px !important;
