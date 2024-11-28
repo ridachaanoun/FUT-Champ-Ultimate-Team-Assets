@@ -88,32 +88,35 @@ function renderTeam(formation) {
         if (currentPlayers[pos.id]) {
           const player = currentPlayers[pos.id];
           playerCard.innerHTML = `
-              <div class="player-detail-card">
-                <div class="rating2">${player.rating}</div>
-                <div class="position2">${player.position}</div>
-                <img class="photo2" src="${player.photo}" alt="${player.name}">
-                <h2 class="name2">${player.name}</h2>
-                <div class="stats2">
-                  ${player.position === "GK" ? `
-                    <span>DIV ${player.diving}</span>
-                    <span>HAN ${player.handling}</span>
-                    <span>KIK ${player.kicking}</span>
-                    <span>REF ${player.reflexes}</span>
-                    <span>PAC ${player.speed}</span>
-                    <span>PSN ${player.positioning}</span>
-                  ` : `
-                    <span>PAC ${player.pace}</span>
-                    <span>SHO ${player.shooting}</span>
-                    <span>PAS ${player.passing}</span>
-                    <span>DRI ${player.dribbling}</span>
-                    <span>DEF ${player.defending}</span>
-                    <span>PHY ${player.physical}</span>
-                  `}
-                </div>
-                <img class="flag2" src="${player.flag}" alt="${player.nationality}">
-                <img class="logo2" src="${player.logo}" alt="${player.club}">
-              </div>
-            `;
+          <div class="player-detail-card">
+            <div class="rating2">${player.rating  || ""}</div>
+            <div class="position2">${player.position  || ""}</div>
+            <img class="photo2" src="${player.photo || ""}" alt="${player.name || ""}">
+            <h2 class="name2">${player.name || ""}</h2>
+            <div class="stats2">
+            ${player.position ? `
+              ${player.position === "GK" ? `
+                <span>DIV ${player.diving || ""}</span>
+                <span>HAN ${player.handling || ""}</span>
+                <span>KIK ${player.kicking || ""}</span>
+                <span>REF ${player.reflexes || ""}</span>
+                <span>PAC ${player.speed || ""}</span>
+                <span>PSN ${player.positioning || ""}</span>
+              ` : `
+                <span>PAC ${player.pace || ""}</span>
+                <span>SHO ${player.shooting || ""}</span>
+                <span>PAS ${player.passing || ""}</span>
+                <span>DRI ${player.dribbling || ""}</span>
+                <span>DEF ${player.defending || ""}</span>
+                <span>PHY ${player.physical || ""}</span>
+              `}`
+              : ``}
+              
+            </div>
+            <img class="flag2" src="${player.flag || ""}" alt="${player.nationality || ""}">
+            <img class="logo2" src="${player.logo || ""}" alt="${player.club || ""}">
+          </div>
+        `;
         }
 
 
@@ -128,7 +131,7 @@ function renderTeam(formation) {
       const container = document.getElementById("card-container");
       container.innerHTML = "";
       async function getPlayers() {
-        // Fetch player data based on position
+        // Fetch player based on position
         const res = await fetch(`http://localhost:3000/players?position=${pos.position}`);
         const playerData = await res.json();
 
@@ -139,37 +142,40 @@ function renderTeam(formation) {
 
           if (player.position === "GK") {
             card.innerHTML = `
-              <div class="rating">${player.rating}</div>
-              <div class="position">${player.position}</div>
-              <img class="photo" src="${player.photo}" alt="${player.name}">
-              <h2 class="name">${player.name}</h2>
+              <div class="rating">${player.rating || ""}</div>
+              <div class="position">${player.position || ""}</div>
+              <img class="photo" src="${player.photo || ""}" alt="${player.name}">
+              <h2 class="name">${player.name || ""}</h2>
               <div class="stats">
-                <span>DIV ${player.diving}</span>
-                <span>HAN ${player.handling}</span>
-                <span>KIK ${player.kicking}</span>
-                <span>REF ${player.reflexes}</span>
-                <span>PAC ${player.speed}</span>
-                <span>PSN ${player.positioning}</span>
+                <span>DIV ${player.diving || ""}</span>
+                <span>HAN ${player.handling || ""}</span>
+                <span>KIK ${player.kicking || ""}</span>
+                <span>REF ${player.reflexes || ""}</span>
+                <span>PAC ${player.speed || ""}</span>
+                <span>PSN ${player.positioning || ""}</span>
               </div>
-              <img class="flag" src="${player.flag}" alt="${player.nationality}">
-              <img class="logo" src="${player.logo}" alt="${player.club}">
+              <img class="flag" src="${player.flag || ""}" alt="${player.nationality || ""}">
+              <img class="logo" src="${player.logo || ""}" alt="${player.club || ""}">
             `;
           } else {
             card.innerHTML = `
-              <div class="rating">${player.rating}</div>
-              <div class="position">${player.position}</div>
-              <img class="photo" src="${player.photo}" alt="${player.name}">
-              <h2 class="name">${player.name}</h2>
+              <div class="rating">${player.rating || ""}</div>
+              <div class="position">${player.position || ""}</div>
+              <img class="photo" src="${player.photo || ""}" alt="${player.name || ""}">
+              <h2 class="name">${player.name || ""}</h2>
+              ${player.position ? `
               <div class="stats">
-                <span>PAC ${player.pace}</span>
-                <span>SHO ${player.shooting}</span>
-                <span>PAS ${player.passing}</span>
-                <span>DRI ${player.dribbling}</span>
-                <span>DEF ${player.defending}</span>
-                <span>PHY ${player.physical}</span>
+                <span>PAC ${player.pace || ""}</span>
+                <span>SHO ${player.shooting || ""}</span>
+                <span>PAS ${player.passing || ""}</span>
+                <span>DRI ${player.dribbling || ""}</span>
+                <span>DEF ${player.defending || ""}</span>
+                <span>PHY ${player.physical || ""}</span>
               </div>
-              <img class="flag" src="${player.flag}" alt="${player.nationality}">
-              <img class="logo" src="${player.logo}" alt="${player.club}">
+              ` : ``}
+
+              <img class="flag" src="${player.flag || ""}" alt="${player.nationality || ""}">
+              <img class="logo" src="${player.logo || ""}" alt="${player.club || ""}">
             `;
           }
 
@@ -177,33 +183,37 @@ function renderTeam(formation) {
           card.addEventListener("click", () => {
             // Save the selected player to the currentPlayers object
             currentPlayers[carrentid] = player;
+            console.log(player);
             console.log("Current ID:", carrentid);
             console.log("Element with ID:", document.getElementById(carrentid));
             carrentcard.innerHTML = `
               <div class="player-detail-card">
-                <div class="rating2">${player.rating}</div>
-                <div class="position2">${player.position}</div>
-                <img class="photo2" src="${player.photo}" alt="${player.name}">
-                <h2 class="name2">${player.name}</h2>
+                <div class="rating2">${player.rating  || ""}</div>
+                <div class="position2">${player.position  || ""}</div>
+                <img class="photo2" src="${player.photo || ""}" alt="${player.name || ""}">
+                <h2 class="name2">${player.name || ""}</h2>
                 <div class="stats2">
+                ${player.position ? `
                   ${player.position === "GK" ? `
-                    <span>DIV ${player.diving}</span>
-                    <span>HAN ${player.handling}</span>
-                    <span>KIK ${player.kicking}</span>
-                    <span>REF ${player.reflexes}</span>
-                    <span>PAC ${player.speed}</span>
-                    <span>PSN ${player.positioning}</span>
+                    <span>DIV ${player.diving || ""}</span>
+                    <span>HAN ${player.handling || ""}</span>
+                    <span>KIK ${player.kicking || ""}</span>
+                    <span>REF ${player.reflexes || ""}</span>
+                    <span>PAC ${player.speed || ""}</span>
+                    <span>PSN ${player.positioning || ""}</span>
                   ` : `
-                    <span>PAC ${player.pace}</span>
-                    <span>SHO ${player.shooting}</span>
-                    <span>PAS ${player.passing}</span>
-                    <span>DRI ${player.dribbling}</span>
-                    <span>DEF ${player.defending}</span>
-                    <span>PHY ${player.physical}</span>
-                  `}
+                    <span>PAC ${player.pace || ""}</span>
+                    <span>SHO ${player.shooting || ""}</span>
+                    <span>PAS ${player.passing || ""}</span>
+                    <span>DRI ${player.dribbling || ""}</span>
+                    <span>DEF ${player.defending || ""}</span>
+                    <span>PHY ${player.physical || ""}</span>
+                  `}`
+                  : ``}
+                  
                 </div>
-                <img class="flag2" src="${player.flag}" alt="${player.nationality}">
-                <img class="logo2" src="${player.logo}" alt="${player.club}">
+                <img class="flag2" src="${player.flag || ""}" alt="${player.nationality || ""}">
+                <img class="logo2" src="${player.logo || ""}" alt="${player.club || ""}">
               </div>
             `;
           });
@@ -224,17 +234,17 @@ function renderTeam(formation) {
 
 // Save squad to localStorage
 function saveSquad() {
-
-
   // Show the confirmation popup
   confirmationPopup.style.display = "flex";
 
   // Confirm save
+  console.log(currentPlayers);
   confirmSave.addEventListener("click", () => {
     const squadData = {
       formation: formationDropdown.value,
       players: currentPlayers,
     };
+
     localStorage.setItem("savedSquad", JSON.stringify(squadData));
 
     // Close the confirmation popup and show the success popup
