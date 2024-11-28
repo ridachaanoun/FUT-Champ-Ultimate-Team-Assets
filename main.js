@@ -282,9 +282,16 @@ closePopup.addEventListener("click", () => {
 loadSquad();
 
 
-// Add Player Form Handler
+// Show attributes of a player
+  document.getElementById("gkAttributes").style.display = "flex";
+  document.getElementById("playerPosition").addEventListener("change", (e) => {
+  const position = e.target.value;
+  document.getElementById("gkAttributes").style.display = position === "GK" ? "flex" : "none";
+  document.getElementById("playerAttributes").style.display = position !== "GK" ? "flex" : "none";
+});
+
+// Add EventListener to Form when user submit it
 document.getElementById("addPlayerForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
 
   const formData = new FormData(e.target);
 
@@ -296,31 +303,37 @@ document.getElementById("addPlayerForm").addEventListener("submit", async (e) =>
     logo: `playerImg/${formData.get("logo").name}`,
     ...(formData.get("position") === "GK"
       ? {
-          rating: 89,
-          diving: 88,
-          handling: 84,
-          kicking: 75,
-          reflexes: 90,
-          speed: 50,
-          positioning: 85,
+          rating: formData.get("rating") || 0,
+          diving: formData.get("diving") || 0,
+          handling: formData.get("handling") || 0,
+          kicking: formData.get("kicking") || 0,
+          reflexes: formData.get("reflexes") || 0,
+          speed: formData.get("speed") || 0,
+          positioning: formData.get("positioning") || 0,
         }
       : {
-          rating: 89,
-          pace: 0,
-          shooting: 0,
-          passing: 0,
-          dribbling: 0,
-          defending: 0,
-          physical: 0,
+          rating: formData.get("rating") || 0,
+          pace: formData.get("pace") || 0,
+          shooting: formData.get("shooting") || 0,
+          passing: formData.get("passing") || 0,
+          dribbling: formData.get("dribbling") || 0,
+          defending: formData.get("defending") || 0,
+          physical: formData.get("physical") || 0,
         }),
   };
-  
-    // Save player
-      await fetch("http://localhost:3000/players", {
+
+  try {
+    await fetch("http://localhost:3000/players", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(playerData),
     });
 
+    alert("Player added successfully!");
+    document.querySelector(".add-player-popup").style.display = "none";
+  } catch (error) {
+    alert("Failed to add player: " + error.message);
+  }
 });
 
 // Open and close Player popup

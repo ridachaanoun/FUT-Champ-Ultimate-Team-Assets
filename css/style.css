@@ -340,37 +340,108 @@ main aside .Formation .custom-select select {
 }
 
 .add-player-popup {
-  background: #f8f9fa;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
   padding: 20px;
-  border-radius: 8px;
+  width: 90%;
   max-width: 400px;
-  margin: auto;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
-.add-player-popup form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-.add-player-popup form label {
+.add-player-popup h4 {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 18px;
   font-weight: bold;
-  margin-bottom: 5px;
 }
-.add-player-popup form input,
-.add-player-popup form select,
-.add-player-popup form button {
-  padding: 10px;
+.add-player-popup label {
+  display: block;
+  margin-bottom: 5px;
   font-size: 14px;
+  font-weight: bold;
+  color: #444;
+}
+.add-player-popup input,
+.add-player-popup select {
+  padding: 10px;
+  margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  font-size: 14px;
+  background-color: #f9f9f9;
 }
-.add-player-popup form button {
-  background: #007bff;
-  color: white;
+.add-player-popup input:focus,
+.add-player-popup select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+.add-player-popup button {
+  width: 50%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
-.add-player-popup form button:hover {
-  background: #0056b3;
+.add-player-popup button:hover {
+  background-color: #0056b3;
+}
+.add-player-popup #closeAddPlayerPopup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+}
+.add-player-popup #closeAddPlayerPopup:hover {
+  color: #333;
+}
+.add-player-popup #gkAttributes,
+.add-player-popup #playerAttributes {
+  flex-wrap: wrap;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.add-player-popup #gkAttributes h4,
+.add-player-popup #playerAttributes h4 {
+  font-size: 16px;
+  color: #555;
+}
+.add-player-popup #gkAttributes label,
+.add-player-popup #playerAttributes label {
+  font-size: 13px;
+}
+.add-player-popup #gkAttributes input,
+.add-player-popup #playerAttributes input {
+  font-size: 13px;
+}
+
+#openAddPlayerPopup {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#openAddPlayerPopup:hover {
+  background-color: #218838;
 }
 
 @media screen and (max-width: 700px) {

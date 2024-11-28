@@ -357,44 +357,119 @@ main {
   }
 }
 
-.add-player-popup {
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-  margin: auto;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+
+.add-player-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+
+  h4 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+  }
+
+  input,
+  select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    &:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+  }
+
+  button {
+    width: 50%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  #closeAddPlayerPopup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    &:hover {
+      color: #333;
+    }
+  }
+
+  #gkAttributes,
+  #playerAttributes {
+    flex-wrap: wrap;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+
+    h4 {
+      font-size: 16px;
+      color: #555;
+    }
 
     label {
-      font-weight: bold;
-      margin-bottom: 5px;
+      font-size: 13px;
     }
 
-    input,
-    select,
-    button {
-      padding: 10px;
-      font-size: 14px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    button {
-      background: #007bff;
-      color: white;
-      cursor: pointer;
-
-      &:hover {
-        background: #0056b3;
-      }
+    input {
+      font-size: 13px;
     }
   }
 }
+
+// Button to open the popup
+#openAddPlayerPopup {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #218838;
+  }
+}
+
 
 
 @media screen and (max-width: 700px) {
