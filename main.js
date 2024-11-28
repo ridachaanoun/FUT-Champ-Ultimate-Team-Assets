@@ -61,8 +61,8 @@ const formations = {
     { id: "CM2", top: "40%", left: "20%", position: "CM" },
     { id: "CM3", top: "40%", left: "40%", position: "CM" },
     { id: "LW", top: "40%", left: "60%", position: "LW" },
-    { id: "ST", top: "40%", left: "80%", position: "ST" },
-    { id: "RW", top: "15%", left: "50%", position: "RW" },
+    { id: "RW", top: "40%", left: "80%", position: "RW" },
+    { id: "ST", top: "15%", left: "50%", position: "ST" },
   ],
 };
 let currentPlayers ={}
