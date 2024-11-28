@@ -4,6 +4,11 @@ const field = document.querySelector('.field');
 const closePopup = document.getElementById("close");
 const bigcontainer = document.querySelector(".theall");
 const saveSquadBtn = document.getElementById("saveSquad");
+const confirmationPopup = document.getElementById("save-confirmation-popup");
+const successPopup = document.getElementById("success-popup");
+const confirmSave = document.getElementById("confirm-save");
+const cancelSave = document.getElementById("cancel-save");
+const okSuccess = document.getElementById("ok-success");
 
 // Define formations and their positions
 const formations = {
@@ -219,11 +224,7 @@ function renderTeam(formation) {
 
 // Save squad to localStorage
 function saveSquad() {
-  const confirmationPopup = document.getElementById("save-confirmation-popup");
-  const successPopup = document.getElementById("success-popup");
-  const confirmSave = document.getElementById("confirm-save");
-  const cancelSave = document.getElementById("cancel-save");
-  const okSuccess = document.getElementById("ok-success");
+
 
   // Show the confirmation popup
   confirmationPopup.style.display = "flex";
@@ -279,3 +280,54 @@ closePopup.addEventListener("click", () => {
 
 
 loadSquad();
+
+
+// Add Player Form Handler
+document.getElementById("addPlayerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+
+  const playerData = {
+    name: formData.get("name"),
+    position: formData.get("position"),
+    photo: `playerImg/${formData.get("photo").name}`,
+    flag: `playerImg/${formData.get("flag").name}`,
+    logo: `playerImg/${formData.get("logo").name}`,
+    ...(formData.get("position") === "GK"
+      ? {
+          rating: 89,
+          diving: 88,
+          handling: 84,
+          kicking: 75,
+          reflexes: 90,
+          speed: 50,
+          positioning: 85,
+        }
+      : {
+          rating: 89,
+          pace: 0,
+          shooting: 0,
+          passing: 0,
+          dribbling: 0,
+          defending: 0,
+          physical: 0,
+        }),
+  };
+  
+    // Save player
+      await fetch("http://localhost:3000/players", {
+      method: "POST",
+      body: JSON.stringify(playerData),
+    });
+
+});
+
+// Open and close Player popup
+document.getElementById("openAddPlayerPopup").addEventListener("click", () => {
+  document.querySelector(".add-player-popup").style.display = "block";
+});
+
+document.getElementById("closeAddPlayerPopup").addEventListener("click", () => {
+  document.querySelector(".add-player-popup").style.display = "none";
+});

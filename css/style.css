@@ -339,6 +339,40 @@ main aside .Formation .custom-select select {
   background-color: #138496;
 }
 
+.add-player-popup {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.add-player-popup form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.add-player-popup form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.add-player-popup form input,
+.add-player-popup form select,
+.add-player-popup form button {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.add-player-popup form button {
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+.add-player-popup form button:hover {
+  background: #0056b3;
+}
+
 @media screen and (max-width: 700px) {
   .cards-container {
     height: 100px !important;
