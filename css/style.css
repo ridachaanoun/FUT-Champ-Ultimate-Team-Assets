@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   padding: 0;
   margin: 0;
@@ -5,14 +6,26 @@
   scrollbar-width: none;
 }
 
+body {
+  background-image: url(/src/assets/img/lineup-hero.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #191919;
+}
+body h1 {
+  text-align: center;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+
 main {
   display: flex;
   justify-content: center;
   gap: 10px;
+  align-items: center;
 }
 main .field {
   background-image: url(/src/assets/img/field-bg.png);
-  background-color: aquamarine;
   width: 900px;
   height: 730px;
   background-position: center;
@@ -37,32 +50,86 @@ main .field .cards-container:hover {
   filter: drop-shadow(0px 0px 13px rgb(75, 172, 75));
 }
 main aside {
+  box-sizing: border-box;
   display: flex;
-  align-items: center;
+  align-items: start;
+  padding-left: 25px;
   flex-direction: column;
-  width: 300px;
-  height: 730px;
-  background-color: rebeccapurple;
+  width: 250px;
+  height: 430px;
+  background-color: rgba(0, 0, 0, 0.285);
+  justify-content: space-evenly;
+  border-radius: 8px;
 }
 main aside .saveSquad {
-  width: 90%;
-  height: 50px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: rgba(85, 204, 162, 0.5568627451);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+main aside .saveSquad:hover {
+  background-color: #1dd695;
+}
+main aside .saveSquad:active {
+  transform: scale(0.95);
+  background-color: #ff0000;
 }
 main aside .Formation {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+main aside .Formation p {
+  font-weight: bold;
+  margin: 0;
+  color: #555;
 }
 main aside .Formation .custom-select {
-  width: 90%;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 200px;
 }
 main aside .Formation .custom-select select {
-  appearance: none;
   width: 100%;
-  font-size: 1.15rem;
-  background-color: #fff;
-  border: 1px solid #caced1;
-  border-radius: 0.25rem;
-  color: #000;
+  padding: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
   cursor: pointer;
+  appearance: none;
+}
+main aside .Formation .custom-select select:hover {
+  border-color: #888;
+}
+main aside .Formation .custom-select select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+main aside .Formation .custom-select::after {
+  content: "▼";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 12px;
+  color: #888;
 }
 
 #card-container {
@@ -433,7 +500,7 @@ main aside .Formation .custom-select select {
 
 #openAddPlayerPopup {
   padding: 10px 20px;
-  background-color: #28a745;
+  background-color: rgba(85, 204, 162, 0.5647058824);
   color: #fff;
   font-size: 16px;
   border: none;
@@ -441,7 +508,7 @@ main aside .Formation .custom-select select {
   cursor: pointer;
 }
 #openAddPlayerPopup:hover {
-  background-color: #218838;
+  background-color: #1dd695;
 }
 
 @media screen and (max-width: 700px) {

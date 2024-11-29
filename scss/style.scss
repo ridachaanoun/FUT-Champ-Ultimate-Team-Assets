@@ -4,15 +4,25 @@
   font-family: Arial, sans-serif;
   scrollbar-width: none;
 }
-
+body{
+  background-image: url(/src/assets/img/lineup-hero.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #191919;
+  h1{
+    text-align: center;
+    padding-top: 20px;
+    box-sizing: border-box;
+  }
+}
 main {
   display: flex;
   justify-content: center;
   gap: 10px;
+  align-items: center;
 
   .field {
     background-image: url(/src/assets/img/field-bg.png);
-    background-color: aquamarine;
     width: 900px;
     height: 730px;
     background-position: center;
@@ -40,36 +50,99 @@ main {
   }
 
   aside {
+    box-sizing: border-box;
     display: flex;
-    align-items: center;
+    align-items: start;
+    padding-left: 25px;
     flex-direction: column;
-    width: 300px;
-    height: 730px;
-    background-color: rebeccapurple;
+    width: 250px;
+    height: 430px;
+    background-color: rgba(0, 0, 0, 0.285);
+    justify-content: space-evenly ;
+    border-radius: 8px;
 
     .saveSquad {
-      width: 90%;
-      height: 50px;
+      // margin-top: 50px;
+      display: inline-block;
+      padding: 10px 20px;
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #55cca28e;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    
+      &:hover {
+        background-color: #1dd695;
+      }
+    
+      &:active {
+        transform: scale(0.95);
+        background-color: #ff0000;
+      }
+    
     }
-
+    
     .Formation {
-      width: 100%;
-
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      color: #333;
+    
+      p {
+        font-weight: bold;
+        margin: 0;
+        color: #555;
+      }
+    
       .custom-select {
-        width: 90%;
-
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        max-width: 200px;
+    
         select {
-          appearance: none;
           width: 100%;
-          font-size: 1.15rem;
-          background-color: #fff;
-          border: 1px solid #caced1;
-          border-radius: 0.25rem;
-          color: #000;
+          padding: 10px;
+          font-size: 14px;
+          font-family: inherit;
+          background-color: #f4f4f4;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          outline: none;
           cursor: pointer;
+          appearance: none;
+    
+          &:hover {
+            border-color: #888;
+          }
+    
+          &:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+          }
+        }
+    
+        &::after {
+          content: '▼';
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translateY(-50%);
+          pointer-events: none;
+          font-size: 12px;
+          color: #888;
         }
       }
     }
+    
   }
 }
 
@@ -459,14 +532,14 @@ main {
 // Button to open the popup
 #openAddPlayerPopup {
   padding: 10px 20px;
-  background-color: #28a745;
+  background-color:#55cca290 ;
   color: #fff;
   font-size: 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   &:hover {
-    background-color: #218838;
+    background-color: #1dd695;
   }
 }
 
