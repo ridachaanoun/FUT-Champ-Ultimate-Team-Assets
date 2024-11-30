@@ -66,8 +66,12 @@ const formations = {
   ],
 };
 let currentPlayers ={}
-// Function to render the team based on the selected formation
+let currentrePlayers ={}
 
+
+
+
+// Function to render the team based on the selected formation
 function renderTeam(formation) {
   field.innerHTML = '';
 
@@ -118,7 +122,6 @@ function renderTeam(formation) {
           </div>
         `;
         }
-
 
 
 
@@ -243,6 +246,7 @@ function saveSquad() {
     const squadData = {
       formation: formationDropdown.value,
       players: currentPlayers,
+      rePlayers:currentrePlayers,
     };
 
     localStorage.setItem("savedSquad", JSON.stringify(squadData));
@@ -269,6 +273,7 @@ function loadSquad() {
   if (savedSquad) {
     formationDropdown.value = savedSquad.formation;
     currentPlayers = savedSquad.players;
+    currentrePlayers = savedSquad.rePlayers;
     renderTeam(savedSquad.formation);
   } else
     renderTeam(formationDropdown.value);
@@ -354,3 +359,172 @@ document.getElementById("openAddPlayerPopup").addEventListener("click", () => {
 document.getElementById("closeAddPlayerPopup").addEventListener("click", () => {
   document.querySelector(".add-player-popup").style.display = "none";
 });
+
+function renderReservePlayers() {
+  for(let i = 1; i <=4 ; i++){
+    console.log(i);
+    
+    const ReservePlayerscontainer = document.querySelector(".ReservePlayers")
+    console.log(ReservePlayerscontainer);
+    const ReservePlayersCard = document.createElement('button');
+    ReservePlayersCard.classList.add('resecards-container');
+    ReservePlayersCard.id = `replaer-${i}`;
+
+    ReservePlayerscontainer.appendChild(ReservePlayersCard)
+
+    ReservePlayersCard.addEventListener("click", (e) => {
+      // console.log(e.currentTarget);
+      
+      let recarrentid = e.currentTarget.id;
+
+      const carrentcard = document.getElementById(recarrentid)
+      
+    
+      const container = document.getElementById("card-container");
+      container.innerHTML = "";
+      async function getrePlayers() {
+
+        const res = await fetch(`http://localhost:3000/players`);
+        const playerData = await res.json();
+
+        playerData.forEach((player) => {
+          // Create the player card
+          const card = document.createElement("div");
+          card.className = "player-card";
+
+          if (player.position === "GK") {
+            card.innerHTML = `
+              <div class="rating">${player.rating || ""}</div>
+              <div class="position">${player.position || ""}</div>
+              <img class="photo" src="${player.photo || ""}" alt="${player.name}">
+              <h2 class="name">${player.name || ""}</h2>
+              <div class="stats">
+                <span>DIV ${player.diving || ""}</span>
+                <span>HAN ${player.handling || ""}</span>
+                <span>KIK ${player.kicking || ""}</span>
+                <span>REF ${player.reflexes || ""}</span>
+                <span>PAC ${player.speed || ""}</span>
+                <span>PSN ${player.positioning || ""}</span>
+              </div>
+              <img class="flag" src="${player.flag || ""}" alt="${player.nationality || ""}">
+              <img class="logo" src="${player.logo || ""}" alt="${player.club || ""}">
+            `;
+          } else {
+            card.innerHTML = `
+              <div class="rating">${player.rating || ""}</div>
+              <div class="position">${player.position || ""}</div>
+              <img class="photo" src="${player.photo || ""}" alt="${player.name || ""}">
+              <h2 class="name">${player.name || ""}</h2>
+              ${player.position ? `
+              <div class="stats">
+                <span>PAC ${player.pace || ""}</span>
+                <span>SHO ${player.shooting || ""}</span>  
+                <span>PAS ${player.passing || ""}</span>
+                <span>DRI ${player.dribbling || ""}</span>
+                <span>DEF ${player.defending || ""}</span>
+                <span>PHY ${player.physical || ""}</span>
+              </div>
+              ` : ``}
+
+              <img class="flag" src="${player.flag || ""}" alt="${player.nationality || ""}">
+              <img class="logo" src="${player.logo || ""}" alt="${player.club || ""}">
+            `;
+          }
+
+          // Add click event to show player details in another card
+          card.addEventListener("click", () => {
+            // Save the selected player to the currentrePlayers object
+            currentrePlayers[recarrentid] = player;
+            console.log(currentrePlayers);
+            
+            console.log(player);
+            console.log("Current ID:", recarrentid);
+            console.log("Element with ID:", document.getElementById(recarrentid));
+            carrentcard.innerHTML = `
+              <div class="player-detail-card">
+                <div class="rating2">${player.rating  || ""}</div>
+                <div class="position2">${player.position  || ""}</div>
+                <img class="photo2" src="${player.photo || ""}" alt="${player.name || ""}">
+                <h2 class="name2">${player.name || ""}</h2>
+                <div class="stats2">
+                ${player.position ? `
+                  ${player.position === "GK" ? `
+                    <span>DIV ${player.diving || ""}</span>
+                    <span>HAN ${player.handling || ""}</span>
+                    <span>KIK ${player.kicking || ""}</span>
+                    <span>REF ${player.reflexes || ""}</span>
+                    <span>PAC ${player.speed || ""}</span>
+                    <span>PSN ${player.positioning || ""}</span>
+                  ` : `
+                    <span>PAC ${player.pace || ""}</span>
+                    <span>SHO ${player.shooting || ""}</span>
+                    <span>PAS ${player.passing || ""}</span>
+                    <span>DRI ${player.dribbling || ""}</span>
+                    <span>DEF ${player.defending || ""}</span>
+                    <span>PHY ${player.physical || ""}</span>
+                  `}`
+                  : ``}
+                  
+                </div>
+                <img class="flag2" src="${player.flag || ""}" alt="${player.nationality || ""}">
+                <img class="logo2" src="${player.logo || ""}" alt="${player.club || ""}">
+              </div>
+            `;
+          });
+
+          // Add the card to the container
+          container.appendChild(card);
+        });
+      }
+      getrePlayers();
+
+      bigcontainer.style.display = "flex";
+    });
+  }
+
+}
+
+renderReservePlayers()
+
+console.log(currentPlayers);
+console.log(currentrePlayers);
+
+
+for(let i = 1; i <=4 ; i++){
+  if (currentrePlayers[`replaer-${i}`]) {
+    const player = currentrePlayers[`replaer-${i}`];
+    let replayercard= document.getElementById(`replaer-${i}`)
+    replayercard.innerHTML = `
+    <div class="player-detail-card">
+      <div class="rating2">${player.rating  || ""}</div>
+      <div class="position2">${player.position  || ""}</div>
+      <img class="photo2" src="${player.photo || ""}" alt="${player.name || ""}">
+      <h2 class="name2">${player.name || ""}</h2>
+      <div class="stats2">
+      ${player.position ? `
+        ${player.position === "GK" ? `
+          <span>DIV ${player.diving || ""}</span>
+          <span>HAN ${player.handling || ""}</span>
+          <span>KIK ${player.kicking || ""}</span>
+          <span>REF ${player.reflexes || ""}</span>
+          <span>PAC ${player.speed || ""}</span>
+          <span>PSN ${player.positioning || ""}</span>
+        ` : `
+          <span>PAC ${player.pace || ""}</span>
+          <span>SHO ${player.shooting || ""}</span>
+          <span>PAS ${player.passing || ""}</span>
+          <span>DRI ${player.dribbling || ""}</span>
+          <span>DEF ${player.defending || ""}</span>
+          <span>PHY ${player.physical || ""}</span>
+        `}`
+        : ``}
+        
+      </div>
+      <img class="flag2" src="${player.flag || ""}" alt="${player.nationality || ""}">
+      <img class="logo2" src="${player.logo || ""}" alt="${player.club || ""}">
+    </div>
+  `;
+  }
+
+
+}

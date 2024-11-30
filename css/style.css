@@ -22,7 +22,6 @@ main {
   display: flex;
   justify-content: center;
   gap: 10px;
-  align-items: center;
 }
 main .field {
   background-image: url(/src/assets/img/field-bg.png);
@@ -515,6 +514,20 @@ main aside .Formation .custom-select::after {
   .cards-container {
     height: 100px !important;
   }
+}
+.resecards-container {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 130px;
+  height: 230px;
+  background: url(/src/assets/img/badge_gold.webp) no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #07d95a;
 }
 
 /*# sourceMappingURL=style.css.map */
