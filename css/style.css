@@ -102,7 +102,7 @@ main aside .Formation .custom-select {
   max-width: 200px;
 }
 main aside .Formation .custom-select select {
-  width: 100%;
+  width: 80px;
   padding: 10px;
   font-size: 14px;
   font-family: inherit;
@@ -229,7 +229,7 @@ main aside .Formation .custom-select::after {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 35%;
-  left: 50%;
+  left: 52%;
   max-width: 65px;
 }
 
@@ -510,11 +510,6 @@ main aside .Formation .custom-select::after {
   background-color: #1dd695;
 }
 
-@media screen and (max-width: 700px) {
-  .cards-container {
-    height: 100px !important;
-  }
-}
 .resecards-container {
   border: none;
   padding: 0;
@@ -528,6 +523,57 @@ main aside .Formation .custom-select::after {
   justify-content: center;
   align-items: center;
   color: #07d95a;
+}
+
+@media screen and (max-width: 560px) {
+  .cards-container {
+    height: 140px !important;
+  }
+  .cards-container .stats2 {
+    display: none;
+  }
+  .cards-container .name2 {
+    top: 64%;
+    font-size: 10px;
+  }
+  .cards-container .position2 {
+    top: 40%;
+  }
+  .cards-container .flag2 {
+    max-width: 15px;
+  }
+}
+@media screen and (max-width: 840px) {
+  main {
+    flex-direction: column-reverse;
+    gap: 0;
+    margin-top: 25px;
+  }
+  main .field {
+    width: auto;
+  }
+  main aside {
+    width: auto;
+    height: 80px;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    justify-content: space-around;
+  }
+  main aside #saveSquad {
+    font-size: 12px;
+  }
+  main aside .Formation {
+    flex-direction: row;
+    align-items: center;
+  }
+  main aside #openAddPlayerPopup {
+    font-size: 12px;
+  }
+  main .ReservePlayers {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

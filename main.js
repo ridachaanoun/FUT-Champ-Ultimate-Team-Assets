@@ -361,7 +361,7 @@ document.getElementById("closeAddPlayerPopup").addEventListener("click", () => {
 });
 
 function renderReservePlayers() {
-  for(let i = 1; i <=4 ; i++){
+  for(let i = 1; i <=3 ; i++){
     console.log(i);
     
     const ReservePlayerscontainer = document.querySelector(".ReservePlayers")
@@ -490,7 +490,7 @@ console.log(currentPlayers);
 console.log(currentrePlayers);
 
 
-for(let i = 1; i <=4 ; i++){
+for(let i = 1; i <=3 ; i++){
   if (currentrePlayers[`replaer-${i}`]) {
     const player = currentrePlayers[`replaer-${i}`];
     let replayercard= document.getElementById(`replaer-${i}`)
