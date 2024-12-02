@@ -126,7 +126,8 @@ function renderTeam(formation) {
 
 
     playerCard.addEventListener("click", (e) => {
-      let carrentid = e.currentTarget.id; 
+      let carrentid = e.currentTarget.id;
+
 
       const carrentcard = document.getElementById(carrentid)
       
@@ -143,6 +144,20 @@ function renderTeam(formation) {
           const card = document.createElement("div");
           card.className = "player-card";
 
+          // Check if the player is already in the `currentPlayers` object
+          let isPlayerOnField = false;
+
+          for (const key in currentPlayers) {
+            if (currentPlayers[key].name === player.name) {
+              isPlayerOnField = true;
+              break;
+            }
+          }
+
+          // Skip rendering this player if they are already on the field
+          if (isPlayerOnField) return;
+
+            
           if (player.position === "GK") {
             card.innerHTML = `
               <div class="rating">${player.rating || ""}</div>
@@ -186,9 +201,6 @@ function renderTeam(formation) {
           card.addEventListener("click", () => {
             // Save the selected player to the currentPlayers object
             currentPlayers[carrentid] = player;
-            console.log(player);
-            console.log("Current ID:", carrentid);
-            console.log("Element with ID:", document.getElementById(carrentid));
             carrentcard.innerHTML = `
               <div class="player-detail-card">
                 <div class="rating2">${player.rating  || ""}</div>
@@ -223,6 +235,7 @@ function renderTeam(formation) {
 
           // Add the card to the container
           container.appendChild(card);
+          
         });
       }
       getPlayers();
@@ -241,7 +254,6 @@ function saveSquad() {
   confirmationPopup.style.display = "flex";
 
   // Confirm save
-  console.log(currentPlayers);
   confirmSave.addEventListener("click", () => {
     const squadData = {
       formation: formationDropdown.value,
@@ -307,7 +319,7 @@ loadSquad();
 
 // Add EventListener to Form when user submit it
 document.getElementById("addPlayerForm").addEventListener("submit", async (e) => {
-
+  e.preventDefault
   const formData = new FormData(e.target);
 
   const playerData = {
@@ -340,7 +352,6 @@ document.getElementById("addPlayerForm").addEventListener("submit", async (e) =>
   try {
     await fetch("http://localhost:3000/players", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(playerData),
     });
 
@@ -362,10 +373,8 @@ document.getElementById("closeAddPlayerPopup").addEventListener("click", () => {
 
 function renderReservePlayers() {
   for(let i = 1; i <=3 ; i++){
-    console.log(i);
     
     const ReservePlayerscontainer = document.querySelector(".ReservePlayers")
-    console.log(ReservePlayerscontainer);
     const ReservePlayersCard = document.createElement('button');
     ReservePlayersCard.classList.add('resecards-container');
     ReservePlayersCard.id = `replaer-${i}`;
@@ -373,7 +382,6 @@ function renderReservePlayers() {
     ReservePlayerscontainer.appendChild(ReservePlayersCard)
 
     ReservePlayersCard.addEventListener("click", (e) => {
-      // console.log(e.currentTarget);
       
       let recarrentid = e.currentTarget.id;
 
@@ -382,98 +390,114 @@ function renderReservePlayers() {
     
       const container = document.getElementById("card-container");
       container.innerHTML = "";
+
+
       async function getrePlayers() {
 
         const res = await fetch(`http://localhost:3000/players`);
         const playerData = await res.json();
 
+
         playerData.forEach((player) => {
           // Create the player card
           const card = document.createElement("div");
           card.className = "player-card";
+              // Check if the player is already in the `currentPlayers` object
+              let isrePlayerOnField = false;
 
-          if (player.position === "GK") {
-            card.innerHTML = `
-              <div class="rating">${player.rating || ""}</div>
-              <div class="position">${player.position || ""}</div>
-              <img class="photo" src="${player.photo || ""}" alt="${player.name}">
-              <h2 class="name">${player.name || ""}</h2>
-              <div class="stats">
-                <span>DIV ${player.diving || ""}</span>
-                <span>HAN ${player.handling || ""}</span>
-                <span>KIK ${player.kicking || ""}</span>
-                <span>REF ${player.reflexes || ""}</span>
-                <span>PAC ${player.speed || ""}</span>
-                <span>PSN ${player.positioning || ""}</span>
-              </div>
-              <img class="flag" src="${player.flag || ""}" alt="${player.nationality || ""}">
-              <img class="logo" src="${player.logo || ""}" alt="${player.club || ""}">
-            `;
-          } else {
-            card.innerHTML = `
-              <div class="rating">${player.rating || ""}</div>
-              <div class="position">${player.position || ""}</div>
-              <img class="photo" src="${player.photo || ""}" alt="${player.name || ""}">
-              <h2 class="name">${player.name || ""}</h2>
-              ${player.position ? `
-              <div class="stats">
-                <span>PAC ${player.pace || ""}</span>
-                <span>SHO ${player.shooting || ""}</span>  
-                <span>PAS ${player.passing || ""}</span>
-                <span>DRI ${player.dribbling || ""}</span>
-                <span>DEF ${player.defending || ""}</span>
-                <span>PHY ${player.physical || ""}</span>
-              </div>
-              ` : ``}
+              for (const key in currentPlayers) {
+                if (currentPlayers[key].name === player.name) {
+                  isrePlayerOnField = true;
+                  break;
+                }
+              }
 
-              <img class="flag" src="${player.flag || ""}" alt="${player.nationality || ""}">
-              <img class="logo" src="${player.logo || ""}" alt="${player.club || ""}">
-            `;
-          }
-
-          // Add click event to show player details in another card
-          card.addEventListener("click", () => {
-            // Save the selected player to the currentrePlayers object
-            currentrePlayers[recarrentid] = player;
-            console.log(currentrePlayers);
-            
-            console.log(player);
-            console.log("Current ID:", recarrentid);
-            console.log("Element with ID:", document.getElementById(recarrentid));
-            carrentcard.innerHTML = `
-              <div class="player-detail-card">
-                <div class="rating2">${player.rating  || ""}</div>
-                <div class="position2">${player.position  || ""}</div>
-                <img class="photo2" src="${player.photo || ""}" alt="${player.name || ""}">
-                <h2 class="name2">${player.name || ""}</h2>
-                <div class="stats2">
-                ${player.position ? `
-                  ${player.position === "GK" ? `
-                    <span>DIV ${player.diving || ""}</span>
-                    <span>HAN ${player.handling || ""}</span>
-                    <span>KIK ${player.kicking || ""}</span>
-                    <span>REF ${player.reflexes || ""}</span>
-                    <span>PAC ${player.speed || ""}</span>
-                    <span>PSN ${player.positioning || ""}</span>
-                  ` : `
-                    <span>PAC ${player.pace || ""}</span>
-                    <span>SHO ${player.shooting || ""}</span>
-                    <span>PAS ${player.passing || ""}</span>
-                    <span>DRI ${player.dribbling || ""}</span>
-                    <span>DEF ${player.defending || ""}</span>
-                    <span>PHY ${player.physical || ""}</span>
-                  `}`
-                  : ``}
-                  
+              for (const key in currentrePlayers) {
+                if (currentrePlayers[key]?.name === player.name) {
+                  isrePlayerOnField = true;
+                  break;
+                }
+              }
+              if (isrePlayerOnField) return ;
+              
+            if (player.position === "GK") {
+              card.innerHTML = `
+                <div class="rating">${player.rating || ""}</div>
+                <div class="position">${player.position || ""}</div>
+                <img class="photo" src="${player.photo || ""}" alt="${player.name}">
+                <h2 class="name">${player.name || ""}</h2>
+                <div class="stats">
+                  <span>DIV ${player.diving || ""}</span>
+                  <span>HAN ${player.handling || ""}</span>
+                  <span>KIK ${player.kicking || ""}</span>
+                  <span>REF ${player.reflexes || ""}</span>
+                  <span>PAC ${player.speed || ""}</span>
+                  <span>PSN ${player.positioning || ""}</span>
                 </div>
-                <img class="flag2" src="${player.flag || ""}" alt="${player.nationality || ""}">
-                <img class="logo2" src="${player.logo || ""}" alt="${player.club || ""}">
-              </div>
-            `;
-          });
-
-          // Add the card to the container
-          container.appendChild(card);
+                <img class="flag" src="${player.flag || ""}" alt="${player.nationality || ""}">
+                <img class="logo" src="${player.logo || ""}" alt="${player.club || ""}">
+              `;
+            } else {
+              card.innerHTML = `
+                <div class="rating">${player.rating || ""}</div>
+                <div class="position">${player.position || ""}</div>
+                <img class="photo" src="${player.photo || ""}" alt="${player.name || ""}">
+                <h2 class="name">${player.name || ""}</h2>
+                ${player.position ? `
+                <div class="stats">
+                  <span>PAC ${player.pace || ""}</span>
+                  <span>SHO ${player.shooting || ""}</span>  
+                  <span>PAS ${player.passing || ""}</span>
+                  <span>DRI ${player.dribbling || ""}</span>
+                  <span>DEF ${player.defending || ""}</span>
+                  <span>PHY ${player.physical || ""}</span>
+                </div>
+                ` : ``}
+  
+                <img class="flag" src="${player.flag || ""}" alt="${player.nationality || ""}">
+                <img class="logo" src="${player.logo || ""}" alt="${player.club || ""}">
+              `;
+            }
+  
+            // Add click event to show player details in another card
+            card.addEventListener("click", () => {
+              // Save the selected player to the currentrePlayers object
+              currentrePlayers[recarrentid] = player;
+              carrentcard.innerHTML = `
+                <div class="player-detail-card">
+                  <div class="rating2">${player.rating  || ""}</div>
+                  <div class="position2">${player.position  || ""}</div>
+                  <img class="photo2" src="${player.photo || ""}" alt="${player.name || ""}">
+                  <h2 class="name2">${player.name || ""}</h2>
+                  <div class="stats2">
+                  ${player.position ? `
+                    ${player.position === "GK" ? `
+                      <span>DIV ${player.diving || ""}</span>
+                      <span>HAN ${player.handling || ""}</span>
+                      <span>KIK ${player.kicking || ""}</span>
+                      <span>REF ${player.reflexes || ""}</span>
+                      <span>PAC ${player.speed || ""}</span>
+                      <span>PSN ${player.positioning || ""}</span>
+                    ` : `
+                      <span>PAC ${player.pace || ""}</span>
+                      <span>SHO ${player.shooting || ""}</span>
+                      <span>PAS ${player.passing || ""}</span>
+                      <span>DRI ${player.dribbling || ""}</span>
+                      <span>DEF ${player.defending || ""}</span>
+                      <span>PHY ${player.physical || ""}</span>
+                    `}`
+                    : ``}
+                    
+                  </div>
+                  <img class="flag2" src="${player.flag || ""}" alt="${player.nationality || ""}">
+                  <img class="logo2" src="${player.logo || ""}" alt="${player.club || ""}">
+                </div>
+              `;
+            });
+  
+            // Add the card to the container
+            container.appendChild(card);
+            
         });
       }
       getrePlayers();
@@ -485,46 +509,3 @@ function renderReservePlayers() {
 }
 
 renderReservePlayers()
-
-console.log(currentPlayers);
-console.log(currentrePlayers);
-
-
-for(let i = 1; i <=3 ; i++){
-  if (currentrePlayers[`replaer-${i}`]) {
-    const player = currentrePlayers[`replaer-${i}`];
-    let replayercard= document.getElementById(`replaer-${i}`)
-    replayercard.innerHTML = `
-    <div class="player-detail-card">
-      <div class="rating2">${player.rating  || ""}</div>
-      <div class="position2">${player.position  || ""}</div>
-      <img class="photo2" src="${player.photo || ""}" alt="${player.name || ""}">
-      <h2 class="name2">${player.name || ""}</h2>
-      <div class="stats2">
-      ${player.position ? `
-        ${player.position === "GK" ? `
-          <span>DIV ${player.diving || ""}</span>
-          <span>HAN ${player.handling || ""}</span>
-          <span>KIK ${player.kicking || ""}</span>
-          <span>REF ${player.reflexes || ""}</span>
-          <span>PAC ${player.speed || ""}</span>
-          <span>PSN ${player.positioning || ""}</span>
-        ` : `
-          <span>PAC ${player.pace || ""}</span>
-          <span>SHO ${player.shooting || ""}</span>
-          <span>PAS ${player.passing || ""}</span>
-          <span>DRI ${player.dribbling || ""}</span>
-          <span>DEF ${player.defending || ""}</span>
-          <span>PHY ${player.physical || ""}</span>
-        `}`
-        : ``}
-        
-      </div>
-      <img class="flag2" src="${player.flag || ""}" alt="${player.nationality || ""}">
-      <img class="logo2" src="${player.logo || ""}" alt="${player.club || ""}">
-    </div>
-  `;
-  }
-
-
-}
