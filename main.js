@@ -148,7 +148,8 @@ function renderTeam(formation) {
           let isPlayerOnField = false;
 
           for (const key in currentPlayers) {
-            if (currentPlayers[key].name === player.name) {
+            if (currentPlayers[key].name === player.name && !currentPlayers[key].id) {
+              
               isPlayerOnField = true;
               break;
             }
