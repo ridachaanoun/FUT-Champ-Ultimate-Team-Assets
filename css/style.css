@@ -412,9 +412,7 @@ main aside .Formation .custom-select::after {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  padding: 20px;
-  width: 90%;
-  max-width: 400px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
@@ -435,7 +433,6 @@ main aside .Formation .custom-select::after {
 .add-player-popup input,
 .add-player-popup select {
   padding: 10px;
-  margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 14px;
@@ -482,11 +479,20 @@ main aside .Formation .custom-select::after {
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-bottom: 15px;
+  display: flex;
+  width: 420px;
+  gap: 5px;
 }
 .add-player-popup #gkAttributes h4,
 .add-player-popup #playerAttributes h4 {
   font-size: 16px;
   color: #555;
+  width: 100%;
+}
+.add-player-popup #gkAttributes div,
+.add-player-popup #playerAttributes div {
+  display: flex;
+  align-items: center;
 }
 .add-player-popup #gkAttributes label,
 .add-player-popup #playerAttributes label {
