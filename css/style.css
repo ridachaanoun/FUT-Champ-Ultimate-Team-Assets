@@ -458,6 +458,7 @@ main aside .Formation .custom-select::after {
   background-color: #0056b3;
 }
 .add-player-popup #closeAddPlayerPopup {
+  width: auto;
   position: absolute;
   top: 10px;
   right: 10px;

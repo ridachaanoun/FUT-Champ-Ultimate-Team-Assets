@@ -66,6 +66,7 @@ const formations = {
   ],
 };
 let currentPlayers ={}
+
 let currentrePlayers ={}
 
 
@@ -148,7 +149,8 @@ function renderTeam(formation) {
           let isPlayerOnField = false;
 
           for (const key in currentPlayers) {
-            if (currentPlayers[key].name === player.name && !currentPlayers[key].id) {
+            
+            if (currentPlayers[key].name === player.name && !currentPlayers[key].emptycard) {
               
               isPlayerOnField = true;
               break;
@@ -510,3 +512,41 @@ function renderReservePlayers() {
 }
 
 renderReservePlayers()
+
+
+for(let i = 1; i <=3 ; i++){
+  if (currentrePlayers[`replaer-${i}`]) {
+    const player = currentrePlayers[`replaer-${i}`];
+    let replayercard= document.getElementById(`replaer-${i}`)
+    replayercard.innerHTML = `
+    <div class="player-detail-card">
+      <div class="rating2">${player.rating  || ""}</div>
+      <div class="position2">${player.position  || ""}</div>
+      <img class="photo2" src="${player.photo || ""}" alt="${player.name || ""}">
+      <h2 class="name2">${player.name || ""}</h2>
+      <div class="stats2">
+      ${player.position ? `
+        ${player.position === "GK" ? `
+          <span>DIV ${player.diving || ""}</span>
+          <span>HAN ${player.handling || ""}</span>
+          <span>KIK ${player.kicking || ""}</span>
+          <span>REF ${player.reflexes || ""}</span>
+          <span>PAC ${player.speed || ""}</span>
+          <span>PSN ${player.positioning || ""}</span>
+        ` : `
+          <span>PAC ${player.pace || ""}</span>
+          <span>SHO ${player.shooting || ""}</span>
+          <span>PAS ${player.passing || ""}</span>
+          <span>DRI ${player.dribbling || ""}</span>
+          <span>DEF ${player.defending || ""}</span>
+          <span>PHY ${player.physical || ""}</span>
+        `}`
+        : ``}
+        
+      </div>
+      <img class="flag2" src="${player.flag || ""}" alt="${player.nationality || ""}">
+      <img class="logo2" src="${player.logo || ""}" alt="${player.club || ""}">
+    </div>
+  `;
+  }
+}
